@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTH-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>11章【タブメニューを作ってみよう】</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <h1>11章【タブメニューを作ってみよう】</h1>
+
+    <div class="wrap">
+      <ul id="tab-menu">
+        <li><a href="#tab1" class="active">TAB1</a></li> 
+        <!-- TAB1には、class="active"を追加して、最初に表示した時に、TAB1の内容が表示されるように設定している -->
+        <li><a href="#tab2" class="">TAB2</a></li>
+        <li><a href="#tab2" class="">TAB3</a></li>
+        <li><a href="#tab2" class="">TAB4</a></li>
+      </ul>
+
+      <div id="tab-contents">
+      <!-- タブをクリックした時の表示内容はこのdiv要素内に記述されている。 -->
+
+        <div id="tab1" class="tab">
+          <p>TAB1のテキストが入ります。</p>
+        </div>
+
+        <div id="tab2" class="tab">
+          <p>TAB2のテキストが入ります。TAB2のテキストが入ります。</p>
+        </div>
+
+        <div id="tab3" class="tab">
+          <p>TAB3の敵スロが入ります。TAB3のテキストが入ります。TAB3のテキストが入ります。</p>
+        </div>
+
+        <div id="tab4" class="tab">
+          <p>TAB4のテキストが入ります。TAB4のテキストが入ります。TAB4のテキストが入ります。TAB4のテキストが入ります。</p>
+        </div>
+
+      <!-- ここまでで、HTMLとCSSだけでは、4つのタブが全て縦に並んで表示されてしまうため、jQueryを使って、クリックされているタブのコンテンツだけが表示されるように設定していく。 -->
+      </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/script.js"></script>
+
+  </body>
+</html>

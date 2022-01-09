@@ -1,10 +1,12 @@
-$(function(){
-  $('.menu-trigger').on('click',function(event){ //.menu-triggerクリック時に行われる処理、.menu-triggerはどこに設定されているかというと、ハンバーガーアイコン<a class="menu-trigger" href="#">に設定されている。
-    $(this).toggleClass('active');               //.toggleClass()は、指定されているclass（ここではactive）をトグル処理するメソッド。トグル処理では、該当のclass属性がある場合にはclassが削除され、ない場合には、classが追加される。aタグのクラスにはmenu-triggerが指定されactiveは指定されていない、この時の.toggleClass()を設定すると、アイコンがクリックされたときに、activeクラスが追加され、もう一度クリックすると削除される。このように、toggleClass()によって、class属性の追加と削除が交互に行われる。
-    $('#sp-menu').fadeToggle();                  //.fadeToggle()でフェードイン・フェードアウトを切り替える。.fadeToggle()は、要素のフェードイン・フェードアウトを切り替えるメソッド。このメソッドを使って、ハンバーガーメニューを開いた時の状態を設定する。
-    event.preventDefault();
-  });
+$('#tab-contents .tab[id != "tab1"]').hide();   //$()関数　では、特定の属性を持つ要素や属性値を絞り込むことができる。特定の属性を持つ要素のみ取得したいときは①のように記述する。
+
+$('#tab-menu a').on('click',function(event){    //クリックされた時に　という意味
+  $('#tab-contents.tab').hide();                //id="tab-contents"内のいずれかのタブがクリックされた時に、そのタブ内の全コンテンツを一旦非表示にしている。hideで
+  $('#tab-menu.active').removeClass("active");  //.removeClass()は、クラス属性が設定されているHTML要素から、クラスを削除するメソッド。ここでは、activeが削除対象のクラスとして指定されている。CSSの#tab-menu.activeの設定では、タブのクラスがactiveの時は背景色が白、文字色が黒になるよう設定されている。タブを切り替えるときは、このCSS設定も一旦削除しなければならない。このため、.removeClass()にactiveクラスを指定している。
+  $(this).addClass("active");                   //.addClass()は、任意のhtml要素にクラス属性を追加できるメソッド。ここでは、activeが追加対象のクラスとして指定されている。どの時にactiveクラスが追加されるかというと$(this)の時、つまりタブがクリックされたとき。(上記で書いている、タブが選ばれた時)
+  $($(this).attr("href")).show();               //.attr()は、HTML要素の属性を取得したり、設定できるメソッド。ここでは。href属性を取得するように指定している。さらに.show()は。要素を表示するメソッドのため、取得したhref属性の中身が表示されることになる。どのときに表示されるかというと、$(this)の時、つまりタブがクリック（選択）された時。
+  event.preventDefault();
 });
 
-//toggleClass()のこと→さらに、.menu-trigger.active span:nth-child(1)~(3)の各CSSによってactiveクラスになった時、アイコンが「×」になるように設定されています。
-//.fadeToggleのこと→ここでは、#sp-menuが開いた時に.fadeToggle()が処理されるように設定している。#sp-menuはどこに設定されているかというと、ハンバーガーメニュー<div id="sp-menu"></div>に設定されている。このように設定することでハンバーガーメニューがクリックされた時に、フェードインとフェードアウトが交互に実行されるようになる。
+//①$('要素[属性]') 属性値がt区邸の値に"等しい"要素だけを取得したい時は、$('要素[属性="値"]')のように記述する。今回は、初期設定で表示されるのはTAB1のコンテンツだけにして。それ以外の内容は非表示にしたい。属性値が特定の値に等しくない要素だけを取得したい時は$('要素[属性!="値"]')のように記述する。
+//また、hide();は特定のHTML要素を非表示にするメソッド。このため$('#tab-contents.tab[id!="tab1"]').hide();と記述することで、id="tab-contents"の要素のうち、class="tab"であり、id="tab1"ではない要素が非表示になる。
